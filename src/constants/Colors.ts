@@ -1,19 +1,20 @@
 export const Colors = {
-    primary: '#C8102B',       // Brand Red
-    primaryDark: '#A30D22',
-    secondary: '#F59E0B',     // Amber/Gold
-    background: '#F7F8FA',    // Light Gray/Off-White
-    surface: '#FFFFFF',
+    primary: '#E5093A',       // Deep Rose Red
+    primaryGradient: ['#FF2E55', '#E5093A'] as const,
+    background: '#E9D6D2',    // Soft Blush Beige
+    surface: '#F4F2F1',       // Soft Off-White Card
     text: {
-        primary: '#1A1A1A',
-        secondary: '#6B7280',
-        muted: '#9CA3AF',
+        primary: '#1A1A1A',   // Deep Charcoal
+        secondary: '#8A8A8A', // Muted Gray
+        muted: '#A0A0A0',
         inverse: '#FFFFFF',
     },
     status: {
-        success: '#10B981',     // Emerald
-        error: '#EF4444',       // Rose
-        warning: '#F59E0B',
+        success: '#27AE60',
+        error: '#FF3B3B',
+        warning: '#F2994A',
     },
-    border: '#E5E7EB',
+    border: '#D8C7C3',
 };
+
+

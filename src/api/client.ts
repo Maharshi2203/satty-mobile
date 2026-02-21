@@ -3,7 +3,7 @@ import { Platform } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 
 const api = axios.create({
-    baseURL: 'https://www.sattys.in/api',
+    baseURL: 'http://localhost:5000/api',
     timeout: 15000,
 });
 

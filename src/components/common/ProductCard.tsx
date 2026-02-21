@@ -6,7 +6,7 @@ import { useCartStore } from '../../store/cart';
 import { Check, Plus } from 'lucide-react-native';
 
 interface Product {
-    id: string;
+    id: number | string;
     name: string;
     final_price: string; // API string
     image_url: string;
@@ -48,20 +48,23 @@ export const ProductCard = ({ product, onPress }: Props) => {
             </View>
 
             <View style={styles.content}>
+                <Text style={styles.brandTitle}>SATTYS</Text>
                 <Text numberOfLines={2} style={styles.name}>{product.name}</Text>
-                <Text style={styles.price}>₹{price.toFixed(2)}</Text>
 
-                <TouchableOpacity
-                    style={[styles.addButton, isOut && styles.disabledButton, inCart && styles.addedButton]}
-                    onPress={handleAdd}
-                    disabled={isOut}
-                >
-                    {inCart ? (
-                        <Check size={16} color="white" />
-                    ) : (
-                        <Plus size={16} color={isOut ? '#999' : 'white'} />
-                    )}
-                </TouchableOpacity>
+                <View style={styles.footerRow}>
+                    <Text style={styles.price}>₹{price.toFixed(0)}</Text>
+                    <TouchableOpacity
+                        style={[styles.addButton, inCart && styles.addedButton]}
+                        onPress={handleAdd}
+                        disabled={isOut}
+                    >
+                        {inCart ? (
+                            <Check size={16} color="white" />
+                        ) : (
+                            <Plus size={16} color={isOut ? '#CCC' : Colors.primary} />
+                        )}
+                    </TouchableOpacity>
+                </View>
             </View>
         </TouchableOpacity>
     );
@@ -69,21 +72,20 @@ export const ProductCard = ({ product, onPress }: Props) => {
 
 const styles = StyleSheet.create({
     card: {
-        backgroundColor: 'white',
-        borderRadius: 12,
-        marginBottom: 12,
-        marginRight: 10,
-        width: 160, // Fixed width for horizontal list or grid item
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 3,
+        backgroundColor: Colors.surface,
+        borderRadius: 24,
+        marginBottom: 16,
+        width: '47%',
         overflow: 'hidden',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.05,
+        shadowRadius: 10,
+        elevation: 2,
     },
     imageContainer: {
         height: 140,
-        backgroundColor: '#F8F8F8',
+        backgroundColor: 'rgba(233, 214, 210, 0.3)',
         justifyContent: 'center',
         alignItems: 'center',
         position: 'relative',
@@ -91,6 +93,13 @@ const styles = StyleSheet.create({
     image: {
         width: '80%',
         height: '80%',
+    },
+    brandTitle: {
+        fontSize: 10,
+        fontWeight: 'bold',
+        color: Colors.primary,
+        letterSpacing: 1,
+        marginBottom: 4,
     },
     badge: {
         position: 'absolute',
@@ -107,40 +116,36 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     content: {
-        padding: 10,
+        padding: 12,
     },
     name: {
-        fontSize: 13,
+        fontSize: 14,
         fontWeight: '600',
         color: Colors.text.primary,
-        marginBottom: 4,
-        height: 36, // 2 lines approx
+        marginBottom: 8,
+        height: 40,
+    },
+    footerRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     price: {
-        fontSize: 15,
+        fontSize: 16,
         fontWeight: 'bold',
-        color: Colors.primary,
+        color: Colors.text.primary,
     },
     addButton: {
-        position: 'absolute',
-        bottom: 10,
-        right: 10,
         width: 32,
         height: 32,
         borderRadius: 16,
-        backgroundColor: Colors.primary,
+        borderWidth: 1.5,
+        borderColor: Colors.primary,
         justifyContent: 'center',
         alignItems: 'center',
-        shadowColor: Colors.primary,
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 3,
-        elevation: 2,
-    },
-    disabledButton: {
-        backgroundColor: '#EEE',
     },
     addedButton: {
-        backgroundColor: Colors.status.success,
+        backgroundColor: Colors.primary,
+        borderColor: Colors.primary,
     },
 });
